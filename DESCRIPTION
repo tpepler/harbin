@@ -1,9 +1,10 @@
 Package: harbin
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
+Title: Harbin quantification for RT-qPCR data
+Version: 0.0-1
 Date: 2015-02-19
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Author: Theo Pepler
+Maintainer: Theo Pepler <tpepler@sun.ac.za>
 Description: More about what it does (maybe more than one line)
-License: What license is it under?
+License: GPL-2
+Depends: stringr, tcltk

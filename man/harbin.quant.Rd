@@ -3,11 +3,11 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Harbin quantification
+Harbin quantification graphical user interface (GUI)
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Performs Harbin quantification for RT-qPCR data.
+Launches a GUI to assist in performing Harbin quantification for RT-qPCR data.
 }
 \usage{
 harbin.quant()
@@ -28,6 +28,7 @@ harbin.quant()
 }
 \author{
 %%  ~~who you are~~
+Theo Pepler
 }
 \note{
 %%  ~~further notes~~
@@ -39,26 +40,11 @@ harbin.quant()
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# To launch the Harbin quantification GUI, at the R prompt simple type
 
-## The function is currently defined as
-function () 
-{
-    require(tcltk)
-    require(stringr)
-    tkmessageBox(message = "Select the gene of interest file(s)")
-    GOIfiles <- open.files()
-    refgenefiles <- vector("list", 3)
-    tkmessageBox(message = "Select the Reference gene 1 file(s)")
-    refgenefiles[[1]] <- open.files()
-    tkmessageBox(message = "Select the Reference gene 2 file(s)")
-    refgenefiles[[2]] <- open.files()
-    tkmessageBox(message = "Select the Reference gene 3 file(s)")
-    refgenefiles[[3]] <- open.files()
-    GOI.normalise(GOIfiles, refgenefiles)
-  }
+harbin.quant()
+
+# hit Enter, and follow the instructions.
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
