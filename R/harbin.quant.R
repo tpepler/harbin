@@ -1,6 +1,6 @@
 # FUNCTION TO PERFORM HARBIN QUANTIFICATION
 
-harbin.quant.new<-function()
+harbin.quant<-function()
 {
   require(tcltk)
   require(stringr)
