@@ -1,10 +1,4 @@
-#********************************************************************
-### HARBIN.TEST FUNCTION
-
 harbin.test<-function(x, y, reps=1000){
-  # x: first sample (as a vector)
-  # y: second sample (as a vector)
-  # reps: number of bootstrap replications
   
   x.n<-length(x)
   y.n<-length(y)

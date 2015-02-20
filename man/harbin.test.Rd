@@ -14,18 +14,15 @@ harbin.test(x, y, reps = 1000)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{y}{
-%%     ~~Describe \code{y} here~~
-}
-  \item{reps}{
-%%     ~~Describe \code{reps} here~~
-}
+  \item{x }{First dataset, as a vector.}
+  \item{y }{Second dataset, as a vector.}
+  \item{reps }{Number of bootstrap replications to use.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
+The Harbin test is a non-parametric test for two-sample location-scale-shape problem, testing the hypothesis that two datasets originated from population distributions which can be described by the same probability distribution function. The alternative hypothesis is that the location, variability and/or shapes of the two population distributions differ.
+
+The test statistic is calculated from quantiles of the pooled datasets, and compared to a bootstrap distribution of the statistic under the null hypothesis.
 }
 \value{
 %%  ~Describe the value returned
@@ -33,12 +30,17 @@ harbin.test(x, y, reps = 1000)
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
+Returns a list with the following components:
+\item{statistic }{Test statistic (the proportion of samples in the first dataset for which the labels have changed when the second dataset was added.}
+\item{crit.val }{95\% critical value for the test.}
+\item{p.value }{P-value for the test.}
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
 %%  ~~who you are~~
+Theo Pepler
 }
 \note{
 %%  ~~further notes~~
@@ -48,50 +50,23 @@ harbin.test(x, y, reps = 1000)
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{harbin.quant}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Example 1: Difference in location
+data1 <- rnorm(n = 30, mean = 0, sd = 1)
+data2 <- rnorm(n = 20, mean = 0.5, sd = 1)
+harbin.test(x = data1, y = data2)
 
-## The function is currently defined as
-function (x, y, reps = 1000) 
-{
-    x.n <- length(x)
-    y.n <- length(y)
-    bound <- quantile(x, probs = c(0.2, 0.4, 0.6, 0.8))
-    indvec <- rep(1, times = length(x))
-    indvec[((x > bound[1]) & (x <= bound[2]))] <- 2
-    indvec[((x > bound[2]) & (x <= bound[3]))] <- 3
-    indvec[((x > bound[3]) & (x <= bound[4]))] <- 4
-    indvec[x > bound[4]] <- 5
-    changeprop <- rep(NA, times = reps)
-    for (i in 1:reps) {
-        bootsamp <- x[sample(1:x.n, size = y.n, replace = TRUE)]
-        bootbound <- quantile(c(x, bootsamp), probs = c(0.2, 
-            0.4, 0.6, 0.8))
-        bootindvec <- rep(1, times = x.n)
-        bootindvec[((x > bootbound[1]) & (x <= bootbound[2]))] <- 2
-        bootindvec[((x > bootbound[2]) & (x <= bootbound[3]))] <- 3
-        bootindvec[((x > bootbound[3]) & (x <= bootbound[4]))] <- 4
-        bootindvec[x > bootbound[4]] <- 5
-        changevec <- bootindvec - indvec
-        changeprop[i] <- (x.n - length(changevec[changevec == 
-            0]))/x.n
-    }
-    newbound <- quantile(c(x, y), probs = c(0.2, 0.4, 0.6, 0.8))
-    newindvec <- rep(1, times = x.n)
-    newindvec[((x > newbound[1]) & (x <= newbound[2]))] <- 2
-    newindvec[((x > newbound[2]) & (x <= newbound[3]))] <- 3
-    newindvec[((x > newbound[3]) & (x <= newbound[4]))] <- 4
-    newindvec[x > newbound[4]] <- 5
-    newchangevec <- newindvec - indvec
-    newchangeprop <- (x.n - length(newchangevec[newchangevec == 
-        0]))/x.n
-    p.value <- length(changeprop[changeprop >= newchangeprop])/reps
-    return(list(statistic = newchangeprop, crit.val = quantile(changeprop, 
-        prob = 0.95), p.value = p.value))
-  }
+# Example 2: Difference in location and variability
+data1 <- rnorm(n = 30, mean = 0, sd = 1)
+data2 <- rnorm(n = 20, mean = 0.2, sd = 1.5)
+harbin.test(x = data1, y = data2)
+
+# Example 3: Difference in location and shape
+data1 <- rnorm(n = 30, mean = 0, sd = 1)
+data2 <- runif(n = 20, min = -2.5, max = 3.5)
+harbin.test(x = data1, y = data2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
