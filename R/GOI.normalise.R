@@ -110,7 +110,7 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
 
   # Write output file for current data set (if applicable)
   if(write.output){
-    tkmessageBox(message="Select a name for the output file (for current data)")
+    tkmessageBox(message="Select a name for the output file for the current data (save with extension *.csv)")
     outfile <- tclvalue(tkgetSaveFile())
     #write.csv(resultsmat,paste(pathname,filename,sep=''),row.names=FALSE,quote=FALSE)
     write.csv(resultsmat,outfile,row.names=FALSE,quote=FALSE)
@@ -118,7 +118,7 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
   
   # Add new data to reference data base (if applicable)
   if(!is.null(refdatabase)){
-    cat("\nDo you want to add the new data to the reference database (y/n): ")
+    cat("\nDo you want to add the new data to the reference database (yes/no): ")
     refbaseadd.answer <- readline()
     cat("\n")
     refdbsaved.message<-"(NOT saved to reference database)"
