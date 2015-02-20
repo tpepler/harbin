@@ -7,7 +7,7 @@ Open files
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Graphical user interface for selecting files to open.
+Graphical user interface for selecting files to open from a local file system.
 }
 \usage{
 open.files()
@@ -15,6 +15,7 @@ open.files()
 %- maybe also 'usage' for other objects documented here.
 \details{
 %%  ~~ If necessary, more details than the description above ~~
+This is a utility function used by \code{\link{harbin.quant}} as part of the graphical user interface to perform Harbin quantification.
 }
 \value{
 %%  ~Describe the value returned
@@ -28,6 +29,7 @@ open.files()
 }
 \author{
 %%  ~~who you are~~
+Theo Pepler
 }
 \note{
 %%  ~~further notes~~
@@ -37,35 +39,9 @@ open.files()
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{harbin.quant}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function () 
-{
-    fileName <- tclvalue(tkgetOpenFile(multiple = T))
-    if (!nchar(fileName)) {
-        tkmessageBox(message = "No file was selected!")
-        return(NULL)
-    }
-    endpoints <- str_locate_all(fileName, "}")[[1]]
-    nfiles <- nrow(endpoints)
-    filelist <- vector("list", nfiles)
-    for (i in 1:nfiles) {
-        if (i == 1) {
-            filelist[i] <- substr(fileName, 2, endpoints[i, "end"] - 
-                1)
-        }
-        if (i > 1) {
-            filelist[i] <- substr(fileName, endpoints[(i - 1), 
-                "end"] + 3, endpoints[i, "end"] - 1)
-        }
-    }
-    return(filelist)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

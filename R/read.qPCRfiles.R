@@ -1,4 +1,3 @@
-#**********************************************************************************
 # Function to read in qPCR files
 
 read.qPCRfiles<-function(files){
@@ -47,5 +46,3 @@ read.qPCRfiles<-function(files){
   #return(list(Unknown=new.unknown.frame,Standard=new.standard.frame))
   return(list(Unknown=new.unknown.frame,Min=min(new.standard.frame[,"Rep.Calc.Conc"]),Max=max(new.standard.frame[,"Rep.Calc.Conc"])))
 }
-
-#**********************************************************************************

@@ -1,5 +1,5 @@
-#**********************************************************************************
 # Function to check convergence of boundary values
+
 convergence.check<-function(datavec,graph=c("density","histogram")){
 
   # datavec: vector of normalised GOI values
@@ -79,5 +79,3 @@ convergence.check<-function(datavec,graph=c("density","histogram")){
   par(mfrow=c(1,1))
   return(boundvals)
 }
-
-#**********************************************************************************

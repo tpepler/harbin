@@ -3,23 +3,22 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Read qPCR files
+Read RT-qPCR files
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Reads in qPCR files for a specific file format.
+Reads in RT-qPCR files with a specific file format from the local file system.
 }
 \usage{
 read.qPCRfiles(files)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{files}{
-%%     ~~Describe \code{files} here~~
-}
+  \item{files }{List containing the local file system address(es) of RT-qPCR file(s) to be read.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
+This is a utility function used by \code{\link{harbin.quant}} as part of the graphical user interface to perform Harbin quantification.
 }
 \value{
 %%  ~Describe the value returned
@@ -33,6 +32,7 @@ read.qPCRfiles(files)
 }
 \author{
 %%  ~~who you are~~
+Theo Pepler
 }
 \note{
 %%  ~~further notes~~
@@ -42,41 +42,9 @@ read.qPCRfiles(files)
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{harbin.quant}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (files) 
-{
-    nfiles <- length(files)
-    newdataframe <- NULL
-    for (j in 1:nfiles) {
-        varnames <- scan(files[[j]], what = "character", nlines = 1, 
-            skip = 8, sep = ",", quiet = TRUE)
-        tempdata <- scan(files[[j]], what = "character", skip = 9, 
-            sep = ",", quiet = TRUE)
-        nlines <- floor(length(tempdata)/13)
-        datamat <- NULL
-        for (i in 1:nlines) {
-            temprow <- tempdata[((i - 1) * 13 + 1):(i * 13)]
-            datamat <- rbind(datamat, temprow)
-        }
-        colnames(datamat) <- varnames
-        newdatamat <- datamat[datamat[, "Type"] == "Unknown", 
-            c("Name", "Type", "Rep. Calc. Conc.")]
-        newvals <- as.numeric(newdatamat[newdatamat[, "Rep. Calc. Conc."] != 
-            "", "Rep. Calc. Conc."])
-        newnames <- as.character(newdatamat[newdatamat[, "Rep. Calc. Conc."] != 
-            "", "Name"])
-        newdataframe <- rbind(newdataframe, data.frame(Name = newnames, 
-            Rep.Calc.Conc = newvals))
-    }
-    newdataframe[, "Name"] <- as.character(newdataframe[, "Name"])
-    return(newdataframe)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
