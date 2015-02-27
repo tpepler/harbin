@@ -3,11 +3,11 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Read RT-qPCR files
+Read RT-qPCR files (Qiagen Rotor-Gene Q thermal cycler)
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Reads in RT-qPCR files with a specific file format from the local file system.
+Reads in RT-qPCR files produced by the Qiagen Rotor-Gene Q thermal cycler from the local file system.
 }
 \usage{
 read.qPCRfiles(files)

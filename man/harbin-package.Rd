@@ -5,14 +5,14 @@
 \title{
 Harbin quantification for RT-qPCR data
 }
-\description{Performs Harbin quantification for reverse transcription quantitative PCR (RT-qPCR) data.
+\description{Performs Harbin quantification for reverse transcription quantitative PCR (RT-qPCR) data. Currently offers support only for files produced by the Qiagen Rotor-Gene Q thermal cycler, but the package can be extended per request to support other technologies.
 }
 \details{
 \tabular{ll}{
 Package: \tab harbin\cr
 Type: \tab Package\cr
 Version: \tab 0.0-1\cr
-Date: \tab 2015-02-26\cr
+Date: \tab 2015-02-27\cr
 License: \tab GPL-2\cr
 }
 }
