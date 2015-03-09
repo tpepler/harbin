@@ -6,13 +6,13 @@ convergence.check<-function(datavec,graph=c("density","histogram")){
   # graph: type of graph to be used for represenation of distribution of normalised GOI values
   
   nbounds<-7
-  boundvals<-quantile(datavec,probs=c(0.2,0.4,0.6,0.8))
+  boundvals<-quantile(datavec,probs=c(0.2,0.4,0.6,0.8),na.rm=TRUE)
   par(mfrow=c(3,1))
   if(graph[1]=="histogram"){
     hist(datavec,breaks=20,col="darkgrey",main="Gene of interest: Distribution",xlab="Normalised GOI value",xlim=c(0,max(datavec)+0.2))
   }
   if(graph[1]=="density"){
-    d<-density(datavec)
+    d<-density(datavec,na.rm=TRUE)
     plot(d,main="Gene of interest: Distribution",xlab="Normalised GOI value",xlim=c(0,max(d$x)))
     polygon(d,col="darkgrey")
   }
@@ -34,12 +34,12 @@ convergence.check<-function(datavec,graph=c("density","histogram")){
   for(j in 10:nGOIvals){
     tempdata<-datavec[1:j]
     tempdata<-tempdata[tempdata>=0]
-    class1UL[j-9]<-quantile(tempdata,probs=0.2)
-    class2UL[j-9]<-quantile(tempdata,probs=0.4)
-    class3UL[j-9]<-quantile(tempdata,probs=0.6)
-    class4UL[j-9]<-quantile(tempdata,probs=0.8)
-    class5UL[j-9]<-quantile(tempdata,probs=1)
-    tempboundvals<-quantile(tempdata,probs=c(0,0.2,0.4,0.6,0.8,1))
+    class1UL[j-9]<-quantile(tempdata,probs=0.2,na.rm=TRUE)
+    class2UL[j-9]<-quantile(tempdata,probs=0.4,na.rm=TRUE)
+    class3UL[j-9]<-quantile(tempdata,probs=0.6,na.rm=TRUE)
+    class4UL[j-9]<-quantile(tempdata,probs=0.8,na.rm=TRUE)
+    class5UL[j-9]<-quantile(tempdata,probs=1,na.rm=TRUE)
+    tempboundvals<-quantile(tempdata,probs=c(0,0.2,0.4,0.6,0.8,1),na.rm=TRUE)
     class1data<-tempdata[(tempdata>=tempboundvals[1]) & (tempdata<=tempboundvals[2])]
     class2data<-tempdata[(tempdata>tempboundvals[2]) & (tempdata<=tempboundvals[3])]
     class3data<-tempdata[(tempdata>tempboundvals[3]) & (tempdata<=tempboundvals[4])]
