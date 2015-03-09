@@ -9,9 +9,18 @@ harbin.quant<-function()
   goahead<-FALSE
   
   while(!happy){
-    cat("\nHow many reference genes do you want to use? (Enter an integer between 1 and 6): ")
-    refgenenum.answer <- readline()
-    cat("\n")
+    in.interval<-FALSE
+    while(!in.interval){
+      cat("\nHow many reference genes do you want to use? (Enter an integer between 1 and 6): ")
+      refgenenum.answer <- readline()
+      if(!(refgenenum.answer %in% c(1:6))){
+        cat("\nYou should enter an integer between 1 and 6!")
+      }
+      else{
+        in.interval<-TRUE
+        cat("\n")
+      }
+    }
     
     # Open gene of interest files
     tkmessageBox(message="Select the gene-of-interest file(s)")
