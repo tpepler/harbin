@@ -1,8 +1,8 @@
 Package: harbin
 Type: Package
 Title: Harbin quantification for RT-qPCR data
-Version: 0.0-1
-Date: 2015-02-27
+Version: 0.1-0
+Date: 2015-03-09
 Author: Theo Pepler
 Maintainer: Theo Pepler <tpepler@sun.ac.za>
 Description: Performs Harbin quantification for reverse transcription quantitative PCR (RT-qPCR) data. Currently offers support only for files produced by the Qiagen Rotor-Gene Q thermal cycler, but the package can be extended per request to support other technologies.
