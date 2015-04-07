@@ -9,9 +9,18 @@ harbin.quant<-function()
   goahead<-FALSE
   
   while(!happy){
+    
+    # Open gene of interest files
+    tkmessageBox(message="Select the gene-of-interest file(s)")
+    GOIfiles<-open.files()
+    cat("Gene-of-interest file(s)\n")
+    for(j in 1:length(GOIfiles)){print(GOIfiles[[j]])}
+    cat("\n")
+    
+    # Specify number of reference genes
     in.interval<-FALSE
     while(!in.interval){
-      cat("\nHow many reference genes do you want to use? (Enter an integer between 1 and 6): ")
+      cat("How many reference genes do you want to use? (Enter an integer between 1 and 6): ")
       refgenenum.answer <- readline()
       if(!(refgenenum.answer %in% c(1:6))){
         cat("\nYou should enter an integer between 1 and 6!")
@@ -21,14 +30,7 @@ harbin.quant<-function()
         cat("\n")
       }
     }
-    
-    # Open gene of interest files
-    tkmessageBox(message="Select the gene-of-interest file(s)")
-    GOIfiles<-open.files()
-    cat("Gene-of-interest file(s)\n")
-    for(j in 1:length(GOIfiles)){print(GOIfiles[[j]])}
-    cat("\n")
-    
+        
     # Open reference gene files
     refgenefiles<-vector("list",refgenenum.answer)
     for(i in 1:refgenenum.answer){

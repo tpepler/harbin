@@ -45,11 +45,11 @@ convergence.check<-function(datavec,graph=c("density","histogram")){
     class3data<-tempdata[(tempdata>tempboundvals[3]) & (tempdata<=tempboundvals[4])]
     class4data<-tempdata[(tempdata>tempboundvals[4]) & (tempdata<=tempboundvals[5])]
     class5data<-tempdata[(tempdata>tempboundvals[5]) & (tempdata<=tempboundvals[6])]
-    class1mean[j-9]<-mean(class1data)
-    class2mean[j-9]<-mean(class2data)
-    class3mean[j-9]<-mean(class3data)
-    class4mean[j-9]<-mean(class4data)
-    class5mean[j-9]<-mean(class5data)
+    class1mean[j-9]<-mean(class1data,na.rm=TRUE)
+    class2mean[j-9]<-mean(class2data,na.rm=TRUE)
+    class3mean[j-9]<-mean(class3data,na.rm=TRUE)
+    class4mean[j-9]<-mean(class4data,na.rm=TRUE)
+    class5mean[j-9]<-mean(class5data,na.rm=TRUE)
   }
   
   plot(x=(10:nGOIvals),y=class1UL,type="l",
