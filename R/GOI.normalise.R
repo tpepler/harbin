@@ -2,7 +2,7 @@
 # Function to normalise the gene of interest with the geometric means of the reference gene(s)
 
 GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=FALSE, 
-                        pathname='', filename='GOI_output.csv', graph=c("density","histogram")){
+                        pathname='', filename='GOI_output.csv'){#, graph=c("density","histogram")){
   # GOIfiles: list of gene of interest file names
   # refgenefiles: list of file names for one or more reference genes
   # refdatabase: file name of reference database
@@ -58,8 +58,8 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
 
   # Normalisation of gene of interest Rep.Calc.Conc values
   refindex<-(Reduce("*",refgenevals))^(1/nrefgenes) # geometric mean of reference gene values
-print(refindex)
-print(GOIdata)
+#print(refindex)
+#print(GOIdata)
   GOI.normdata<-GOIdata[,"Rep.Calc.Conc"]/refindex
   
   # Select valid gene of interest data only
@@ -78,7 +78,8 @@ print(GOIdata)
     }
     refdatabase.valid.ind<-rep(0,times=nrow(refdatabase.data))
     refdatabase.valid.ind[refdatabase.data$Interval!=0]<-1
-    boundvals<-convergence.check(c(refdatabase.data[refdatabase.valid.ind==1,"GOI.normalised"],GOI.validdata),graph=graph)
+    #boundvals<-convergence.check(c(refdatabase.data[refdatabase.valid.ind==1,"GOI.normalised"],GOI.validdata),graph=graph)
+    boundvals<-convergence.check(c(refdatabase.data[refdatabase.valid.ind==1,"GOI.normalised"],GOI.validdata))
     refdatabase.index<-rep(0,times=nrow(refdatabase.data))
     refdatabase.index[((refdatabase.data[,"GOI.normalised"]>=0) & (refdatabase.data[,"GOI.normalised"]<=boundvals[1]))]<-1
     refdatabase.index[((refdatabase.data[,"GOI.normalised"]>boundvals[1]) & (refdatabase.data[,"GOI.normalised"]<=boundvals[2]))]<-2
@@ -100,7 +101,8 @@ print(GOIdata)
   } else {
     
     # Convergence check using only current normalised data set
-    boundvals<-convergence.check(GOI.validdata,graph=graph)
+    #boundvals<-convergence.check(GOI.validdata,graph=graph)
+    boundvals<-convergence.check(GOI.validdata)
   }  
 
   # Calculate categories for current data set

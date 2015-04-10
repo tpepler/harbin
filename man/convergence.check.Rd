@@ -10,12 +10,13 @@ Convergence check
 Function to check if the Harbin quantification boundaries converge.
 }
 \usage{
-convergence.check(datavec, graph = c("density", "histogram"))
+%convergence.check(datavec, graph = c("density", "histogram"))
+convergence.check(datavec)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{datavec }{Vector containing normalised gene-of-interest (GOI) values.}
-  \item{graph }{Type of graph ("density", "histogram") to be used for represenation of distribution of normalised GOI values (default = "density").}
+  %\item{graph }{Type of graph ("density", "histogram") to be used for represenation of distribution of normalised GOI values (default = "density").}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
