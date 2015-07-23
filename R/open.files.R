@@ -7,7 +7,8 @@ open.files<-function()
     tkmessageBox(message = "No file was selected!")
     return(NULL)
   }
-  endpoints<-str_locate_all(fileName,"}")[[1]]
+print(fileName)
+  endpoints<-str_locate_all(string=fileName,pattern="}")[[1]]
   nfiles<-nrow(endpoints)
   filelist<-vector("list",nfiles)
   for(i in 1:nfiles){

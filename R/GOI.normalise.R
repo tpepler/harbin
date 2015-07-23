@@ -42,10 +42,10 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
     for(i in 1:n){
       if(GOIdata[i,"Name"]!=refgenedata[[j]][i,"Name"]){
         if(!(GOIdata[i,"Name"] %in% refgenedata[[j]][,"Name"])){
-          stop(paste("\nNo concentration value for ",GOIdata[i,"Name"]," (from gene of interest data) found in Reference gene ",j," file(s)!\n",sep=""))
+          stop(paste("\nError: No concentration value for ",GOIdata[i,"Name"]," (from gene of interest data) found in Reference gene ",j," file(s)!\n",sep=""))
         }
         if(!(refgenedata[[j]][i,"Name"] %in% GOIdata[,"Name"])){
-          stop(paste("\nNo concentration value for ",refgenedata[[j]][i,"Name"]," (from Reference gene ",j," data) found in gene of interest file(s)!\n",sep=""))
+          stop(paste("\nError: No concentration value for ",refgenedata[[j]][i,"Name"]," (from Reference gene ",j," data) found in gene of interest file(s)!\n",sep=""))
         }
         #print(i)
         #print(GOIdata[i,"Name"])

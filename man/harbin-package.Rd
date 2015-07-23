@@ -11,15 +11,15 @@ Harbin quantification for RT-qPCR data
 \tabular{ll}{
 Package: \tab harbin\cr
 Type: \tab Package\cr
-Version: \tab 0.1-1\cr
-Date: \tab 2015-04-10\cr
+Version: \tab 0.1-2\cr
+Date: \tab 2015-07-23\cr
 License: \tab GPL-2\cr
 }
 }
 \author{
 Theo Pepler
 
-Maintainer: Theo Pepler <tpepler@sun.ac.za>
+Maintainer: Theo Pepler <theo.pepler@glasgow.ac.uk>
 }
 \references{
 }
