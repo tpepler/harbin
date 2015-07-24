@@ -11,8 +11,8 @@ Harbin quantification for RT-qPCR data
 \tabular{ll}{
 Package: \tab harbin\cr
 Type: \tab Package\cr
-Version: \tab 0.1-2\cr
-Date: \tab 2015-07-23\cr
+Version: \tab 0.1-3\cr
+Date: \tab 2015-07-24\cr
 License: \tab GPL-2\cr
 }
 }

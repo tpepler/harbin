@@ -90,6 +90,7 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
     refdatabase.data[,"Interval"]<-refdatabase.index
     
     # Harbin test: Reference data base vs. new data
+    cat("\nHarbin Test: New dataset vs. Reference dataset\n")
     harbin.out<-harbin.test(x=refdatabase.data[,"GOI.normalised"],y=GOI.validdata,reps=1000)
     cat(paste("\nProportion of labels changing in reference data base: ",round(harbin.out$statistic*100,1),"%\n",sep=""))
     cat("H0: New data originated from same distribution as reference data\n")
@@ -117,6 +118,7 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
   #interval.index[(GOI.valid.ind==999)]<- 999
   notescol<-rep("Pass",times=n)
   notescol[is.na(GOIdata[,"Rep.Calc.Conc"]/refindex)]<-"Fail"
+  notescol[is.na(GOIdata[,"Rep.Calc.Conc"])]<-"No data"
   notescol[(GOI.valid.ind==-999)]<- "GOI below standard curve range"
   notescol[(GOI.valid.ind==999)]<- "GOI above standard curve range"
   notescol[(refgene.valid.ind==-999)]<- "Refgene below standard curve range"
@@ -132,7 +134,7 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
 
   # Write output file for current data set (if applicable)
   if(write.output){
-    tkmessageBox(message="Select a name for the output file for the current data (save with extension *.csv)")
+    tkmessageBox(message="Select a name for the output file for the current data (*.csv)")
     outfile <- tclvalue(tkgetSaveFile())
     extname<-substr(outfile,start=nchar(outfile)-3,stop=nchar(outfile))
     if(!(extname %in% c(".csv",".CSV"))){
