@@ -40,6 +40,9 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
     refgene.valid.ind[refgenedata[[j]][,"Rep.Calc.Conc"]>refgene.max]<- 999
     refgene.valid.ind[is.na(refgenedata[[j]][,"Rep.Calc.Conc"])]<- NA
     for(i in 1:n){
+      if(i > nrow(refgenedata[[j]])){
+        stop(paste("\nError: No concentration value for ",GOIdata[i,"Name"]," (from gene of interest data) found in Reference gene ",j," file(s)!\n",sep=""))
+      }
       if(GOIdata[i,"Name"]!=refgenedata[[j]][i,"Name"]){
         if(!(GOIdata[i,"Name"] %in% refgenedata[[j]][,"Name"])){
           stop(paste("\nError: No concentration value for ",GOIdata[i,"Name"]," (from gene of interest data) found in Reference gene ",j," file(s)!\n",sep=""))
@@ -58,8 +61,6 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
 
   # Normalisation of gene of interest Rep.Calc.Conc values
   refindex<-(Reduce("*",refgenevals))^(1/nrefgenes) # geometric mean of reference gene values
-#print(refindex)
-#print(GOIdata)
   GOI.normdata<-GOIdata[,"Rep.Calc.Conc"]/refindex
   
   # Select valid gene of interest data only

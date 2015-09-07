@@ -3,11 +3,11 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Harbin test
+Harbin test (EXPERIMENTAL)
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Performs the Harbin test for two groups.
+Performs the Harbin test for two groups. (PLEASE NOTE that this method is experimental and still undergoing testing.)
 }
 \usage{
 harbin.test(x, y, reps = 1000)
