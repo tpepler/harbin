@@ -91,13 +91,24 @@ GOI.normalise<-function(GOIfiles, refgenefiles, refdatabase=NULL, write.output=F
     refdatabase.data[,"Interval"]<-refdatabase.index
     
     # Harbin test: Reference data base vs. new data
-    cat("\nHarbin Test: New dataset vs. Reference dataset\n")
-    harbin.out<-harbin.test(x=refdatabase.data[,"GOI.normalised"],y=GOI.validdata,reps=1000)
-    cat(paste("\nProportion of labels changing in reference data base: ",round(harbin.out$statistic*100,1),"%\n",sep=""))
+    ## (NOTE: HARBIN TEST NOT YET WORKING AS INTENDED!!)
+    #cat("\nHarbin Test: New dataset vs. Reference dataset\n")
+    #harbin.out<-harbin.test(x=refdatabase.data[,"GOI.normalised"],y=GOI.validdata,reps=1000)
+    #cat(paste("\nProportion of labels changing in reference data base: ",round(harbin.out$statistic*100,1),"%\n",sep=""))
+    #cat("H0: New data originated from same distribution as reference data\n")
+    #cat("H1: New data and reference data come from different distributions\n")
+    #cat(paste("Harbin test p-value = ",harbin.out$p.value,"\n",sep=""))
+    #if(harbin.out$p.value<=0.05){
+    #  cat("\nWARNING: Reference data and new data may not be compatible!\n")
+    #}
+    
+    # Kolmogorov-Smirnov test: Reference data base vs. new data
+    cat("\nKolmogorov-Smirnov Test: New dataset vs. Reference dataset\n")
+    ks.out<-ks.test(x=refdatabase.data[,"GOI.normalised"],y=GOI.validdata,alternative='two.sided')
     cat("H0: New data originated from same distribution as reference data\n")
     cat("H1: New data and reference data come from different distributions\n")
-    cat(paste("Harbin test p-value = ",harbin.out$p.value,"\n",sep=""))
-    if(harbin.out$p.value<=0.05){
+    cat(paste("Kolmogorov-Smirnov test p-value = ",round(ks.out$p.value,4),"\n",sep=""))
+    if(ks.out$p.value<=0.05){
       cat("\nWARNING: Reference data and new data may not be compatible!\n")
     }
   } else {
