@@ -7,4 +7,4 @@ Author: Theo Pepler
 Maintainer: Theo Pepler <theo.pepler@glasgow.ac.uk>
 Description: Performs Harbin quantification for reverse transcription quantitative PCR (RT-qPCR) data. Currently offers support only for files produced by the Qiagen Rotor-Gene Q thermal cycler, but the package can be extended per request to support other technologies.
 License: GPL-2
-Depends: stringr, tcltk
+Imports: stringr, tcltk
